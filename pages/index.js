@@ -5,11 +5,12 @@ import { Divider, Header, Loader } from "semantic-ui-react";
 import ItemList from "../src/components/ItemList";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+export default function Home({ list }) {
+ /*
   const [list, setList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const API_URL =
-    "http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  // "http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline";
 
   function getData() {
     Axios.get(API_URL).then((res) => {
@@ -22,7 +23,7 @@ export default function Home() {
   useEffect(() => { 
     getData();
   }, []);
-
+*/
   return (
     <div>
       <Head>
@@ -30,7 +31,7 @@ export default function Home() {
         <meta name="description" content="코딩 앙마 홈입니다."></meta>
       </Head>
 
-      {isLoading && (
+      {/* {isLoading && (
         <div style={{ padding: "300px 0 "}}>
           <Loader inline="centered" active>
             Loading
@@ -38,7 +39,7 @@ export default function Home() {
         </div>
       )}
 
-      {!isLoading && (
+      {!isLoading && ( */}
         <>
           <Header as="h3" style={{ paddingTop: 40 }}>
             베스트 상품
@@ -51,7 +52,21 @@ export default function Home() {
           <Divider />
           <ItemList list={list.slice(9, 18)} />
         </>
-      )}
+      {/* )} */}
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const apiUrl = process.env.apiUrl;
+  const res = await Axios.get(apiUrl);
+  const data = res.data;
+  console.log(apiUrl);
+
+  return {
+    props: {
+      list: data,
+      name: process.env.name
+    },
+  };
 }

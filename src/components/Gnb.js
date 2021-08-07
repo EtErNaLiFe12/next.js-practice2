@@ -12,6 +12,8 @@ export default function Gnb() {
     activeItem = "about";
   } else if (router.pathname === '/contact') {
     activeItem = "contact";
+  } else if (router.pathname === '/admin') {
+    activeItem = "admin";
   }
 
   // a 태그나 location.href를 사용해도 되나 이 두가지는 페이지를 새로고침하게됨
@@ -24,7 +26,7 @@ export default function Gnb() {
       router.push("/about");
     } else if(data.name === 'contact us') {
       router.push("/contact");
-    }
+    } 
   }
   return (
        <Menu inverted>
@@ -42,6 +44,13 @@ export default function Gnb() {
           name='contact us'
           active={activeItem === 'contact'}
           onClick={goLink}
+        />
+        <Menu.Item
+          name='admin'
+          active={activeItem === 'admin'}
+          onClick={ () => {
+            router.push("/admin")
+          }}
         />
       </Menu>
   )
