@@ -1,4 +1,3 @@
-
 import Axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -31,17 +30,10 @@ export default function Admin() {
   useEffect(() => {
     checkLogin();
   }, []);
-
-
   return (
-
     <>
-     <h2>admin</h2>
-      {isLogin && 
-        <Button onClick={logout}>Logout</Button>
-      }
+      admin
+      {isLogin && <Button onClick={logout}>Logout</Button>}
     </>
-
   );
-
 }
